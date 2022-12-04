@@ -31,6 +31,7 @@ namespace WEBAPP.Controllers
         {
             IEnumerable<Product> productlist = _unitOfWork.Product.GetAllData("Category");
             return View(productlist);
+
         }
         [Authorize]
         public IActionResult Upsert(int? id)
