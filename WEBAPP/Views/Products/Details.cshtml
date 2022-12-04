@@ -1,0 +1,54 @@
+﻿@model WEBAPP.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.product_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.product_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.product_price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.product_price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.product_description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.product_description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.product_image_link)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.product_image_link)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.rating)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.rating)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.createdAt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.createdAt)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.product_id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

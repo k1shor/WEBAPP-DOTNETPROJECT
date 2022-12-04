@@ -1,0 +1,25 @@
+﻿@model ShoppingCart
+@{
+    ViewData["Title"] = "ProductDetails";
+}
+
+<h1>ProductDetails</h1>
+
+
+
+<form method="post">
+<div class="container d-flex mx-auto shadow-lg align-items-center">
+        <input asp-for="@Model.ProductId" hidden/>
+
+    <div class="img-div p-5 w-50">
+        <img src="~/Images/Products/@Model.Product.product_image_link" alt="Images/Products/@Model.Product.product_image_link" style="width:100%" />
+    </div>
+    <div class="product-details p-5 align-middle w-50">
+        <h3>@Model.Product.product_name</h3>
+        <h4>Rs. @Model.Product.product_price</h4>
+        <h5 class="mt-1">Number<input type="number" class="form-control-sm ms-3" asp-for="@Model.count"/></h5>
+        <p>Description: @Model.Product.product_description</p>
+        <button class="btn btn-warning" asp-action="ProductDetails" asp-controller="Home">Add to Cart</button>
+    </div>
+</div>
+</form>

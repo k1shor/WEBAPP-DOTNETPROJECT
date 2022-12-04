@@ -1,0 +1,19 @@
+﻿@model ShoppingCart
+
+
+<div class="d-flex mx-auto p-5">
+    <div class="img-div p-5">
+        <img src="~/Images/Products/@Model.Product.product_image_link"/>
+    </div>
+    <div class="info-div p-5">
+        <div class="h4">@Model.Product.product_name</div>
+            <div class="h5-text">Rs.@Model.Product.product_price</div>
+            <div class="btn-group">
+                <a class="btn btn-danger">-</a>
+                <h5 class="mb-0 py-2 px-3 bg-info">@Model.count</h5>
+                <a class="btn btn-success" asp-action="IncrementCount" asp-route-cartId="@Model.ID">+</a>
+
+            </div>
+    </div>
+
+</div>

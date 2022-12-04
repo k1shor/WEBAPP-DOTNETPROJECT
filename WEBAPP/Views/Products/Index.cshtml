@@ -1,0 +1,95 @@
+﻿@model IEnumerable<WEBAPP.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Upsert">Create New</a>
+</p>
+<table class="table text-center" id="productTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.product_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.product_price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.product_description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rating)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+                
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var obj in Model)
+            {
+            <tr>
+                <td> @obj.product_name</td>
+                <td>@obj.product_price</td>
+                <td>@obj.product_description</td>
+                <td>@obj.rating</td>
+                <td>@obj.Category.category_name</td>
+
+                <td>
+                    <a asp-action='Upsert' class='btn btn-warning' asp-route-id='@obj.product_id'>Update</a>
+                    <a class='btn btn-danger' onClick= delete_product('/Product/Delete/@obj.product_id')>Delete</a>
+                </td>
+            </tr>
+            }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+    function delete_product(url){
+            const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+            $.ajax({
+                    url: url,
+                    type: "DELETE",
+                    success: function (data){
+                        if(data.success){
+                        toastr.success(data.message);
+                    }
+                    else{
+                        toastr.error(data.message)
+                    }
+                }
+            })
+        )
+      } 
+    })  
+    }
+    </script>
+}
+

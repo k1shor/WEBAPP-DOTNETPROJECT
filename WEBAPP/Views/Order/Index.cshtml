@@ -1,0 +1,60 @@
+﻿@model Order
+
+<div class="container">
+    <form asp-action="index" method="post">
+        <input asp-for="@Model.OrderTotal" hidden/>
+        <input asp-for="@Model.Shipping_Charge" hidden />
+        <input asp-for="@Model.ApplicationUserId" hidden />
+        <input asp-for="@Model.ProductId" hidden />
+        <input asp-for="@Model.Product" hidden />
+        <input asp-for="@Model.ShoppingCartId" hidden/>
+        <input asp-for="@Model.count" hidden/>
+
+
+
+        <div class="d-flex p-5 shadow-lg mx-auto">
+    
+            <div class="w-50">
+                <img src="./Images/Products/@Model.Product.product_image_link" style="height:250px"/>
+                <h3>Quantity: @Model.count</h3>
+                <h3>Order Total: @Model.OrderTotal</h3>
+                <h3>Shipping Charge: @Model.Shipping_Charge</h3>
+                <hr/>
+                <h4>Grand Total: @(@Model.OrderTotal + @Model.Shipping_Charge)</h4>
+
+            </div>
+    
+            <div class="w-50 p-5">
+                <h2 class="text-decoration-underline">Shipping Address</h2>
+                <div class="form-floating">
+                    <input asp-for="@Model.Street" class="form-control" placeholder="enter street address" />
+                    <label>Street Address:</label>
+                </div>
+                <span asp-validation-for="Street"></span>
+            <div class="form-floating">
+                <input asp-for="@Model.City" class="form-control" placeholder="enter street address" />
+                <label>City:</label>
+            </div>
+            <span asp-validation-for="City"></span>
+            <div class="form-floating">
+                <input asp-for="@Model.PostalCode" class="form-control" placeholder="enter street address"/>
+                <label>Postal Code:</label>
+            </div>
+            <span asp-validation-for="PostalCode"></span>
+            <div class="form-floating">
+                <input asp-for="@Model.Phone" class="form-control" placeholder="enter street address"/>
+                <label>Phone:</label>
+            </div>
+            <span asp-validation-for="Country"></span>
+            <div class="form-floating">
+                <input asp-for="@Model.Country" class="form-control" placeholder="enter street address" />
+                <label>Country:</label>
+            </div>
+            <span asp-validation-for="Phone"></span>
+
+
+    </div>
+</div>
+        <input type="submit" class="btn btn-warning form-control" value="Proceed to Payment">
+        </form>
+</div>

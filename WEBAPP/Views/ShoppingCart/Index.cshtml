@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model IEnumerable<ShoppingCart>
+@{
+    int Index = 1;
+    double total=0;
+    <script>
+    @foreach (var item in Model)
+    {
+        @(@total += @item.count * @item.Product.product_price)
+    }
+    </script>
+}
+<div class="row">
+
+@*<div class="col-md-8">*@
+<table class="table text-center align-center table-hover">
+    <thead>
+        <tr>
+                <th>S.No.</th>
+                <th>Product Image</th>
+                <th>Product Information</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Action</th>
+                <th>Total Price</th>
+                <th>To Shipping</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model){
+            <tr>
+                <td>@(@Index++)</td>
+                <td>
+                    <img src="~/Images/Products/@item.Product.product_image_link" style="height:100px"/>
+                </td>
+                <td>
+                    <h5>@item.Product.product_name</h5>
+                </td>
+                <td>
+                        <h5>Rs.@item.Product.product_price</h5>
+                </td>
+                <td>
+                    <div class="btn-group">
+                                <a asp-action="DecrementCount" asp-route-cartId="@item.ID" class="btn btn-danger">-</a>
+                    <h5 class="mb-0 py-2 px-3 bg-info">@item.count</h5>
+                            <a asp-action="IncrementCount" asp-route-cartId="@item.ID" class="btn btn-success">+</a>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="btn-group">
+                            <a class="btn btn-danger" asp-action="CartItemUpdate" asp-route-id="@item.ID"><i class="bi bi-pencil"></i></a>
+                            <a class="btn btn-success" asp-action="RemoveFromCart" asp-route-cartId="@item.ID"><i class="bi bi-trash"></i></a>
+                    </div>
+                </td>
+                <td>
+                    <h5>@(@item.count*@item.Product.product_price)</h5>
+                </td>
+                <td>
+                    <a asp-action="Index" asp-controller="Order" asp-route-cartId="@item.ID" class="btn btn-info"><i class="bi bi-cart"></i></a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+@*</div>
+*@
+@*<div class="col-md-3 shadow-lg ms-3 p-3 " >
+    Total: @total
+</div>*@
+</div>
+
+@section scripts{
+   <script>
+       
+
+   </script>
+}
+
+                           
