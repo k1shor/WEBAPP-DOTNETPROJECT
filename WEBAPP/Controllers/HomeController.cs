@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
+using System.Net.Mail;
+using System.Net;
 using System.Security.Claims;
 using WEBAPP.Models;
 using WEBAPP.Repository;
@@ -26,6 +28,16 @@ namespace WEBAPP.Controllers
             return View(productlist);
         }
 
+        public IActionResult MailSent()
+        {
+            var client = new SmtpClient("smtp.mailtrap.io", 2525)
+            {
+                Credentials = new NetworkCredential("98d01484d2ca26", "e75a30a02b5212"),
+                EnableSsl = true
+            };
+            client.Send("from@example.com", "to@example.com", "Hello world", "testbody");
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
